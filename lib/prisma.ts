@@ -3,7 +3,7 @@ import path from 'path';
 
 declare global {
   // eslint-disable-next-line no-var
-  var cachedPrisma: PrismaClient;
+  var cachedPrisma: PrismaClient | undefined;
 }
 
 // Workaround to find the db file in production
@@ -17,6 +17,7 @@ const config = {
 };
 
 let prisma: PrismaClient;
+
 if (process.env.NODE_ENV === 'production') {
   prisma = new PrismaClient(config);
 } else {
@@ -26,4 +27,5 @@ if (process.env.NODE_ENV === 'production') {
   prisma = global.cachedPrisma;
 }
 
-export const db = prisma;
+// FIX: Export 'prisma' directly so imports like "import { prisma } from..." work
+export { prisma };
