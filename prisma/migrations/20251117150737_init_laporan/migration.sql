@@ -1,0 +1,8 @@
+-- CreateTable
+CREATE TABLE "Laporan" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "judul" TEXT NOT NULL,
+    "isiLaporan" TEXT NOT NULL,
+    "status" TEXT NOT NULL DEFAULT 'Dikirim',
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

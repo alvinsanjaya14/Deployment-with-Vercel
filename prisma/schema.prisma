@@ -1,5 +1,4 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// prisma/schema.prisma
 
 generator client {
   provider = "prisma-client-js"
@@ -10,11 +9,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Model data sederhana
-model Barang {
-  id        Int      @id @default(autoincrement())
-  nama      String
-  deskripsi String?
-  harga     Int
-  createdAt DateTime @default(now())
+// b. Buatlah table untuk menyimpan laporan
+model Laporan {
+  id          Int      @id @default(autoincrement())
+  judul       String
+  isiLaporan  String
+  status      String   @default("Dikirim") // Status default: "Dikirim", "Diproses", "Selesai"
+  createdAt   DateTime @default(now())
 }
